@@ -26,7 +26,7 @@ Zoek de regel die begint met /media/<user>/<usblabel> (kolom TARGET) en noteer
 de apparaatnaam /dev/sd<XN> (kolom SOURCE).
 Voer uit:
 umount /dev/sd<XN>
-sudo dd bs=4M conv=fdatasync status=progress if=~/Downloads/<isonaam> of=/dev/sd<X>
+sudo dd bs=4M conv=fsync status=progress if=~/Downloads/<isonaam> of=/dev/sd<X>
 
 Of gebruik Ventoy
 -----------------
@@ -58,7 +58,7 @@ Find the line that starts with /media/<user>/<usblabel> (TARGET column) and note
 the device name /dev/sd<XN> (SOURCE column).
 Execute:
 umount /dev/sd<XN>
-sudo dd bs=4M conv=fdatasync status=progress if=~/Downloads/<isonaam> of=/dev/sd<X>
+sudo dd bs=4M conv=fsync status=progress if=~/Downloads/<isonaam> of=/dev/sd<X>
 
 Or use Ventoy
 -------------
@@ -1499,7 +1499,7 @@ Controleer alles unmounted.
 lsblk
 
 Kopieer naar USB-stick (kan even duren, ~15 minuten).
-sudo dd if=$HOME/debian-persist.iso of=/dev/sdb
+sudo dd if=$HOME/debian-persist.iso of=/dev/sdb bs=4M conv=fsync status=progress
 
 Maak en formatteer 3e partitie.
 sudo fdisk /dev/sdb <<<$'n\np\n\n\n\nw'
